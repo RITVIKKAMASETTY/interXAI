@@ -576,8 +576,9 @@ const SignUp = () => {
       <div className="flex min-h-screen items-center justify-center p-6">
         <div className={`container ${isActive ? 'active' : ''}`}>
           <div className="form-container sign-up-container">
-            <div className="glassmorphic rounded-3xl p-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-              <div className="text-center mb-4">
+            {/* ✅ FIX 1: Changed p-4 to p-6 and added flex flex-col justify-center h-full */}
+            <div className="glassmorphic rounded-3xl p-6 animate-fade-in h-full flex flex-col justify-center" style={{ animationDelay: '0.4s' }}>
+              <div className="text-center mb-5">
                 <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
                   Join InterXAI
                 </h2>
@@ -585,7 +586,8 @@ const SignUp = () => {
                   Start your journey
                 </p>
               </div>
-              <div className="space-y-3">
+              {/* ✅ FIX 2: Changed space-y-3 to space-y-4 for more breathing room between elements */}
+              <div className="space-y-4">
                 {verificationMode ? (
                   <div className="text-center">
                     <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center">
@@ -610,7 +612,7 @@ const SignUp = () => {
                     <button
                       onClick={handleVerifyEmail}
                       disabled={isLoading}
-                      className="btn-primary text-sm py-2"
+                      className="btn-primary text-sm py-3"
                     >
                       {isLoading ? 'Verifying...' : 'Verify Email'}
                     </button>
@@ -675,12 +677,19 @@ const SignUp = () => {
                       showPassword={showSignupConfirmPassword}
                       onTogglePassword={() => setShowSignupConfirmPassword(!showSignupConfirmPassword)}
                     />
+                    {/* ✅ FIX 3: Both buttons now use identical py-3 for equal full height */}
                     <button
                       onClick={handleSignUp}
                       disabled={isLoading}
-                      className="btn-primary text-sm py-2"
+                      className="btn-primary text-sm py-3"
                     >
                       {isLoading ? 'Creating...' : 'Create Account'}
+                    </button>
+                    <button
+                      onClick={toggle}
+                      className="btn-primary text-sm py-3"
+                    >
+                      Sign In
                     </button>
                   </>
                 )}
@@ -893,7 +902,7 @@ const SignUp = () => {
               </div>
               <div className="overlay-panel overlay-right">
                 <h1 className="text-2xl font-bold text-white">Hello, Welcome Back!</h1>
-                <p className="text-white/80 mt-2 mb-4 text-sm">Don’t have an account?</p>
+                <p className="text-white/80 mt-2 mb-4 text-sm">Don't have an account?</p>
                 <button className="ghost text-sm py-2 px-6" onClick={toggle}>Sign Up</button>
               </div>
             </div>
@@ -910,7 +919,8 @@ const SignUp = () => {
           position: relative;
           overflow: hidden;
           max-width: 900px;
-          height: 600px;
+          /* ✅ FIX: Increased from 600px to 680px so both buttons have equal room */
+          height: 680px;
           background: rgba(255, 255, 255, 0.8);
           box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
           border-radius: 20px;
@@ -1040,6 +1050,7 @@ const SignUp = () => {
           background: linear-gradient(135deg, #8B5CF6, #3B82F6);
           color: white;
           font-weight: 600;
+          /* ✅ FIX: Standardised padding — py-3 applied via className overrides this */
           padding: 0.75rem 1.25rem;
           border-radius: 0.75rem;
           border: none;
